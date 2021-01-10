@@ -3,19 +3,20 @@ import numpy as np
 
 img = cv2.imread(r'G:\PyProject\PixelSlide\img\1.JPG')
 mask = np.zeros(img.shape, np.uint8)
-koef = 4
-img_res = cv2.resize(img, (img.shape[1] // koef, img.shape[0] // koef))
-mask_res = cv2.resize(mask, (img.shape[1] // koef, img.shape[0] // koef))
+decrease_coefficient = 4
+img_res = cv2.resize(img, (img.shape[1] // decrease_coefficient, img.shape[0] // decrease_coefficient))
+mask_res = cv2.resize(mask, (img.shape[1] // decrease_coefficient, img.shape[0] // decrease_coefficient))
 
 drawing = False  # true if mouse is pressed
 mode = True  # if True, draw rectangle. Press 'm' to toggle to curve
 ix, iy = -1, -1
 pressed = False
 
-h, w = img.shape[0] // koef, img.shape[1] // koef
+h, w = img.shape[0] // decrease_coefficient, img.shape[1] // decrease_coefficient
 k, b = 0, 0
 last = ((0, 0), (h, w))
 print(h, w)
+
 
 class Frame:
     def __init__(self, h, w):
